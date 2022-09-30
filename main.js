@@ -1,15 +1,12 @@
-async function clickedEvent(img_index){
-    let id = document.getElementsByTagName('img')[img_index].attributes[2].value
+async function clickedEvent(my_id){
+    // let id = document.getElementsByTagName('img')[img_index].attribute[2].value
+    let id = document.getElementById(my_id).alt
+    console.log(my_id)
     let headers = new Headers([
         ['Content-Type', 'applications/json'],
         ['Accept', 'application/json'],
     ]);
 
-    apiData = function(data){
-        let title = data.title[0];
-        
-        document.querySelector(".modal-title").innerText = title;
-    }
 
     let request = new Request(`https://api.artic.edu/api/v1/artworks/${id}`, {
         method: 'GET',
@@ -19,11 +16,17 @@ async function clickedEvent(img_index){
     let result = await fetch(request);
 
     let response = await result.json();
-
+    
+    // Overwrite Title in Modal
+    let title = await response.data.title
+    console.log(title)
     console.log(response)
 
-
+    let my_title = document.getElementById('staticBackdropLabel')
+    my_title.innerHTML = title
+    console.log(my_title)
 }
+
 
 function doSomethingPlease(id, event){
     switch(id){
