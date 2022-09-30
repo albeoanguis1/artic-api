@@ -13,9 +13,15 @@ body{
     height: 100%;
 }
 
+h1,h3{
+    font-family: 'Cormorant Garamond, serif';
+}
+
 a {
     opacity: 100%;
     text-decoration: none;
+    margin: auto;
+    padding: auto;
 }
 
 a:hover {

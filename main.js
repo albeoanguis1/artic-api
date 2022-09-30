@@ -16,24 +16,24 @@ async function clickedEvent(my_id){
     let result = await fetch(request);
 
     let response = await result.json();
-    
-    // Overwrite Title in Modal
+
+    // Assigning api data to variables
     let title = await response.data.title
+    let date_pub = await response.data.date_start
+    let artist = await response.data.artist_display
+    let history = await response.data.publication_history
     console.log(title)
+    console.log(date_pub)
     console.log(response)
 
+    // Displays Elements in Modal
+    //Displays Title + Date published
     let my_title = document.getElementById('staticBackdropLabel')
-    my_title.innerHTML = title
+    my_title.innerHTML = title + ", " + date_pub
+    //Displaying art information in body of Modal
+    let my_artist = document.getElementById('IAmArtist')
+    my_artist.innerHTML = artist
+    let my_desc = document.getElementById('IAmDesc')
+    my_desc.innerHTML = history
     console.log(my_title)
-}
-
-
-function doSomethingPlease(id, event){
-    switch(id){
-        case 'fig1':{//van Gogh
-            event.stopPropagation();
-            clickedEvent(0,0)
-            break;
-        }
-    }
 }
